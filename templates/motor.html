@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <title>Proyecto Ecuaciones</title>
+</head>
+<body>
+    <header>
+        <nav class="navegacion">
+            <a class="nav-enlace" href="index">Programa Inicial</a>
+            <a class="nav-enlace nav-enlace_activo" href="">Descripción del proyecto</a>
+        </nav>
+    </header>
+    <div id="particles-js"></div>
+
+    <main class="contenedor">
+        <div>
+            <h2>Procesamiento de Imágenes mediante Convolución</h2>
+            <br><br>
+            <p>La convolución es una operación matemática utilizada en el procesamiento de imágenes para aplicar filtros que modifican o mejoran las características de una imagen. Se utiliza para realizar tareas como aumentar la nitidez, desenfocar, detectar bordes, y más.</p>
+            
+            <h3>¿Qué es un Kernel?</h3>
+            <p>Un kernel (o máscara de convolución) es una pequeña matriz utilizada para aplicar efectos a las imágenes. Un kernel se desliza sobre la imagen y, en cada posición, se multiplica por la porción correspondiente de la imagen. El resultado de estas multiplicaciones se suma para obtener el nuevo valor del píxel central.</p>
+            
+            <h3>Ejemplo de Kernel</h3>
+            <p>Uno de los ejemplos más comunes de kernel es el operador Scharr, utilizado para la detección de bordes. El kernel Scharr horizontal se ve así:</p>
+            <table border style="margin: 0 auto; color: #000000;">
+                <tr>
+                    <td>-3&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td>0&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td>3&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>-10&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td>0&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td>10&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>-3&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td>0&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td>3&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                </tr>
+            </table>
+
+            <h3>Proceso de Convolución</h3>
+            <p>El proceso de convolución consiste en los siguientes pasos:</p>
+            <ol>
+                <li>Colocar el kernel sobre una porción de la imagen.</li>
+                <li>Multiplicar cada valor del kernel por el valor del píxel correspondiente de la imagen.</li>
+                <li>Sumar todos los productos obtenidos.</li>
+                <li>Asignar el valor resultante al píxel central de la porción actual de la imagen.</li>
+                <li>Repetir el proceso para cada posición posible del kernel en la imagen.</li>
+            </ol>
+
+            <h3>Ejemplo Práctico</h3>
+            <p>Consideremos una imagen de 5x5 píxeles y un kernel de 3x3:</p>
+            <table border style="margin: 0 auto; color: #000000;">
+                <tr>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>5</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>7</td>
+                    <td>8</td>
+                    <td>9</td>
+                    <td>10</td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td>12</td>
+                    <td>13</td>
+                    <td>14</td>
+                    <td>15</td>
+                </tr>
+                <tr>
+                    <td>16</td>
+                    <td>17</td>
+                    <td>18</td>
+                    <td>19</td>
+                    <td>20</td>
+                </tr>
+                <tr>
+                    <td>21</td>
+                    <td>22</td>
+                    <td>23</td>
+                    <td>24</td>
+                    <td>25</td>
+                </tr>
+            </table>
+
+            <h3>Transformada de Laplace y su Influencia</h3>
+            <p>La transformada de Laplace es una herramienta matemática que puede utilizarse para analizar y diseñar sistemas lineales. En el contexto de procesamiento de imágenes, se relaciona con la convolución en el sentido de que ambos son usados para el análisis de señales. Sin embargo, es más común utilizar la transformada de Fourier para este propósito en procesamiento de imágenes, ya que convierte las imágenes al dominio de la frecuencia, donde las convoluciones se pueden realizar como multiplicaciones simples.</p>
+
+            <h3>Ejemplos de Kernels Comunes</h3>
+            <ul>
+                <li><strong>Kernel de Desenfoque (Blur):</strong>
+                    <table border style="margin: 0 auto; color: #000000;">
+                        <tr>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                        </tr>
+                    </table>
+                </li>
+                <li><strong>Kernel de Enfoque (Sharpen):</strong>
+                    <table border style="margin: 0 auto; color: #000000;">
+                        <tr>
+                            <td>0</td>
+                            <td>-1</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>-1</td>
+                            <td>5</td>
+                            <td>-1</td>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>-1</td>
+                            <td>0</td>
+                        </tr>
+                    </table>
+                </li>
+                <li><strong>Kernel de Detección de Bordes (Edge Detection):</strong>
+                    <table border style="margin: 0 auto; color: #000000;">
+                        <tr>
+                            <td>-1</td>
+                            <td>-1</td>
+                            <td>-1</td>
+                        </tr>
+                        <tr>
+                            <td>-1</td>
+                            <td>8</td>
+                            <td>-1</td>
+                        </tr>
+                        <tr>
+                            <td>-1</td>
+                            <td>-1</td>
+                            <td>-1</td>
+                        </tr>
+                    </table>
+                </li>
+            </ul>
+            
+            <h3>Conversión a Escala de Grises y Convolución</h3>
+            <p>Para convertir una imagen a escala de grises y aplicar un kernel, puedes usar Python y las librerías OpenCV y NumPy. A continuación, se muestra un ejemplo de cómo hacerlo:</p>
+
+            
+
+            <p>En este código, se carga una imagen, se convierte a escala de grises, y se aplica el kernel de Scharr para detectar bordes. El resultado se guarda y se muestra utilizando OpenCV.</p>
+        </div>
+    </main>
+    
+    <script src="C:\Users\algui\Downloads\ProyectoEcuaciones-main\ProyectoEcuaciones-main\js\particles.min.js"></script>
+    <script src="C:\Users\algui\Downloads\ProyectoEcuaciones-main\ProyectoEcuaciones-main\js\app.js"></script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+=<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../static/css/style.css" >
+    <title>Proyecto Ecuaciones</title>
+</head>
+<body>
+    <header>
+        <nav class="navegacion">
+            <a class="nav-enlace nav-enlace_activo" href="index.html">Programa Inicial</a>
+            <a class="nav-enlace" href="motor">Descripción del proyecto</a>
+    
+        </nav>
+    </header>
+    <div id="particles-js"></div>
+
+    <main class="contenedor">
+        <div>
+                <h1 class="titulo">Cam</h1>
+                <img src="{{ url_for('video_feed') }}" width="500" height="350">
+                <h2>Procesamiento de imágenes mediante convolución</h2>
+                
+
+                <form action="/run_function" method="post">
+                    <label class="titulo" for="opciones">Elige una opción para el filtro a aplicar:</label>
+                    <select id="opciones" name="opciones">
+                        <option value="opcion1">Kernel Sobel</option>
+                        <option value="opcion2">Kernel de Media</option>
+                        <option value="opcion3">Kernel Laplaciano</option>
+                    </select>
+                    <button type="submit">Tomar foto</button>
+                </form>
+
+                <p id="texto-opcion"></p>
+
+                <h1 class="titulo">Foto</h1>
+                <img id="captured-photo" width="400" height="300" style="display: none;">
+
+                <div>//Espacio para imagen escala de grises</div>
+        </div>
+    </main>
+    
+
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/particles.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
+</body>
+</html>
